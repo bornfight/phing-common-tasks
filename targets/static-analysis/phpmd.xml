@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project name="phpmd" default="phpmd.execute">
+
+    <target name="phpmd:before" hidden="true">
+        <echo message="No actions defined" level="debug"/>
+    </target>
+
+    <target name="phpmd:main" hidden="true">
+        <available file="${project.root}/phpmd.xml" type="file" property="phpmd.xml.exists"/>
+        <fail unless="phpmd.xml.exists" message="phpmd.xml not found!"/>
+        <phpmd>
+            <fileset dir="${project.root}">
+                <include name="src/**/*.php" />
+            </fileset>
+            <formatter type="xml" outfile="${project.root}/reports/pmd.xml"/>
+        </phpmd>
+    </target>
+
+    <target name="phpmd:after" hidden="true">
+        <echo message="No actions defined" level="debug"/>
+    </target>
+
+    <target name="phpmd.execute" depends="phpmd:before, phpmd:main, phpmd:after">
+        <echo message="Succeessful!"/>
+    </target>
+
+</project>

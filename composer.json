@@ -1,0 +1,11 @@
+{
+    "name": "bornfight/phing-common-tasks",
+    "type": "library",
+    "authors": [
+        {
+            "name": "JosipTrbuscic",
+            "email": "josip.trbuscic@bornfight.com"
+        }
+    ],
+    "require": {}
+}

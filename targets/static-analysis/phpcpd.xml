@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="phpcpd" default="phpcpd.execute">
+    <target name="phpcpd:before" hidden="true">
+        <echo message="No actions defined" level="debug"/>
+    </target>
+
+    <target name="phpcpd:main" hidden="true">
+        <phpcpd>
+            <fileset dir="${project.root}">
+                <include name="src/**/*.php" />
+            </fileset>
+        </phpcpd>
+    </target>
+
+    <target name="phpcpd:after" hidden="true">
+        <echo message="No actions defined" level="debug"/>
+    </target>
+
+    <target name="phpcpd.execute" depends="phpcpd:before, phpcpd:main, phpcpd:after">
+        <echo message="Succeessful!"/>
+    </target>
+
+</project>
