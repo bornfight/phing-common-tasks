@@ -5,6 +5,7 @@
     <import file="${commons.root}/targets/doctrine/db.xml"/>
     <import file="${commons.root}/targets/test/test.xml"/>
     <import file="${commons.root}/targets/test/ci-test.xml"/>
+    <import file="${commons.root}/targets/jwt/jwt.xml"/>
 
     <target name="commons.execute" description="Execute common tasks">
         <phingcall target="static-analysis"/>

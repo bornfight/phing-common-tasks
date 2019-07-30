@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="jwt" default="jwt.create">
+    <resolvepath propertyName="jwt.root" file="${phing.dir.jwt}"/>
+
+    <target name="jwt.create">
+        <mkdir dir="config/jwt"/>
+        <exec executable="openssl" checkreturn="true">
+            <arg value="genrsa"/>
+            <arg value="-out"/>
+            <arg value="config/jwt/private.pem"/>
+            <arg value="-aes256"/>
+            <arg value="4096"/>
+        </exec>
+        <exec executable="openssl" checkreturn="true">
+            <arg value="rsa"/>
+            <arg value="-pubout"/>
+            <arg value="-in"/>
+            <arg value="config/jwt/private.pem"/>
+            <arg value="-out"/>
+            <arg value="config/jwt/public.pem"/>
+        </exec>
+    </target>
+</project>

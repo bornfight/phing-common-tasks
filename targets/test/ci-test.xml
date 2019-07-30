@@ -8,13 +8,13 @@
     </target>
 
     <target name="ci.test:main" hidden="true">
-        <exec executable="vendor/bin/codecept" checkreturn="true">
-            <arg value="run"/>
-            <arg value="--coverage-html"/>
-            <arg value="--coverage-xml"/>
-            <arg value="--html"/>
-            <arg value="--xml"/>
-        </exec>
+            <exec executable="vendor/bin/codecept" checkreturn="true">
+                <arg value="run"/>
+                <arg value="--coverage-html"/>
+                <arg value="--coverage-xml"/>
+                <arg value="--html"/>
+                <arg value="--xml"/>
+            </exec>
     </target>
 
     <target name="ci.test:after" hidden="true">
