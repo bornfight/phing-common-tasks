@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="db" default="db.help">
+    <resolvepath propertyName="doctrine.root" file="${commons.root}/targets/doctrine"/>
+    <resolvepath propertyName="console" file="${project.root}/bin/console"/>
+
+    <target name="db.help">
+        <echo message="No actions defined" level="debug"/>
+    </target>
+
+    <target name="db.create">
+        <exec executable="${console}">
+            <arg value="doctrine:database:create"/>
+            <arg value="--if-not-exists"/>
+            <arg value="--no-interaction"/>
+        </exec>
+    </target>
+
+    <target name="db.drop">
+        <exec executable="${console}">
+            <arg value="doctrine:database:drop"/>
+            <arg value="--force"/>
+            <arg value="--if-exists"/>
+            <arg value="--no-interaction"/>
+        </exec>
+    </target>
+
+    <target name="db.cache.clear">
+        <exec executable="${console}">
+            <arg value="doctrine:cache:clear-result"/>
+        </exec>
+        <exec executable="${console}">
+            <arg value="doctrine:cache:clear-query"/>
+        </exec>
+        <exec executable="${console}">
+            <arg value="doctrine:cache:clear-metadata"/>
+        </exec>
+    </target>
+
+    <target name="db.migrate">
+        <phingcall target="db.cache.clear"/>
+        <exec executable="${console}">
+            <arg value="doctrine:migrations:migrate"/>
+            <arg value="--allow-no-migration"/>
+            <arg value="--no-interaction"/>
+        </exec>
+    </target>
+
+    <target name="db.fixtures">
+        <exec executable="${console}">
+            <arg value="doctrine:fixtures:load"/>
+            <arg value="--no-interaction"/>
+        </exec>
+    </target>
+
+    <target name="db.recreate">
+        <phingcall target="db.drop"/>
+        <phingcall target="db.create"/>
+    </target>
+
+    <target name="db.init">
+        <phingcall target="db.recreate"/>
+        <phingcall target="db.migrate"/>
+        <phingcall target="db.fixtures"/>
+    </target>
+
+</project>

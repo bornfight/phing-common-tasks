@@ -3,26 +3,27 @@
 
 <project name="phpcs" default="phpcs.execute">
 
-    <target name="phpcs:before" hidden="true">
-        <echo message="No actions defined" level="debug"/>
-    </target>
-
     <target name="phpcs:main" hidden="true">
         <available file="${project.root}/.php_cs.dist" type="file" property="php_cs.dist.exists"/>
         <fail unless="php_cs.dist.exists" message="php_cs.dist not found!"/>
-        <exec executable="vendor/bin/php-cs-fixer" passthru="true" checkreturn="true">
+        <exec executable="${project.root}/vendor/bin/php-cs-fixer" passthru="true" checkreturn="true" output="${project.root}/reports/php-csfixer-checkstyle.xml">
             <arg value="fix"/>
             <arg value="--dry-run"/>
             <arg value="--diff"/>
+            <arg value="--format=checkstyle"/>
         </exec>
     </target>
 
-    <target name="phpcs:after" hidden="true">
-        <echo message="No actions defined" level="debug"/>
+
+    <target name="phpcs.execute">
+        <phingcall target="phpcs:main"/>
+        <echo message="Succeessful!"/>
     </target>
 
-    <target name="phpcs.execute" depends="phpcs:before, phpcs:main, phpcs:after">
-        <echo message="Succeessful!"/>
+    <target name="phpcs.fix">
+        <exec executable="vendor/bin/php-cs-fixer" checkreturn="true">
+            <arg value="fix"/>
+        </exec>
     </target>
 
 </project>

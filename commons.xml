@@ -2,6 +2,7 @@
 <project name="commons" default="commons.execute">
     <resolvepath propertyName="commons.root" file="${phing.dir.commons}"/>
     <import file="${commons.root}/targets/static-analysis/static-analysis.xml"/>
+    <import file="${commons.root}/targets/doctrine/db.xml"/>
 
     <target name="commons.execute" description="Execute common tasks">
         <phingcall target="static-analysis.execute"/>

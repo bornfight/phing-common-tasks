@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project name="phpstan" default="phpstan.execute">
+    <target name="phpstan:main" hidden="true">
+        <available file="${project.root}/phpstan.neon" type="file" property="phpstan.neon.exists"/>
+        <fail unless="phpstan.neon.exists" message="phpstan.neon not found!"/>
+        <exec executable="${project.root}/vendor/bin/phpstan" passthru="true" checkreturn="true" output="${project.root}/reports/phpstan-checkstyle.xml">
+            <arg value="analyse"/>
+            <arg value="--level=7"/>
+            <arg value="--no-progress"/>
+            <arg value="--no-ansi"/>
+            <arg value="--error-format=checkstyle"/>
+            <arg value="src"/>
+        </exec>
+    </target>
+
+    <target name="phpstan.execute">
+        <phingcall target="phpstan:main"/>
+        <echo message="Succeessful!"/>
+    </target>
+
+</project>

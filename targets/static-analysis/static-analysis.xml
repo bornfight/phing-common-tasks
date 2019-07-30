@@ -2,16 +2,17 @@
 
 <project name="static-analysis" default="static-analysis.execute">
     <resolvepath propertyName="static-analysis.root" file="${commons.root}/targets/static-analysis"/>
-    <import file="${static-analysis.root}/phpcpd.xml"/>
-    <import file="${static-analysis.root}/phpcs.xml"/>
-    <import file="${static-analysis.root}/phpmd.xml"/>
-    <import file="${static-analysis.root}/phpstan.xml"/>
+    <import file="${static-analysis.root}/tools/phpcpd.xml"/>
+    <import file="${static-analysis.root}/tools/phpcs.xml"/>
+    <import file="${static-analysis.root}/tools/phpmd.xml"/>
+    <import file="${static-analysis.root}/tools/phpstan.xml"/>
 
     <target name="static-analysis:before" hidden="true">
         <echo message="No actions defined" level="debug"/>
     </target>
 
     <target name="static-analysis:main" hidden="true">
+        <mkdir dir="${project.root}/reports"/>
         <phingcall target="phpmd.execute"/>
         <phingcall target="phpcpd.execute"/>
         <phingcall target="phpstan.execute"/>
@@ -22,7 +23,9 @@
         <echo message="No actions defined" level="debug"/>
     </target>
 
-    <target name="static-analysis.execute" depends="static-analysis:before, static-analysis:main, static-analysis:after">
-        <echo message="Successful!"/>
+    <target name="static-analysis.execute">
+        <phingcall target="static-analysis:before"/>
+        <phingcall target="static-analysis:main"/>
+        <phingcall target="static-analysis:after"/>
     </target>
 </project>

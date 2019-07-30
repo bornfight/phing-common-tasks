@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="phpcpd" default="phpcpd.execute">
+
+    <target name="phpcpd:main" hidden="true">
+        <phpcpd>
+            <fileset dir="${project.root}">
+                <include name="src/**/*.php" />
+            </fileset>
+            <formatter outfile="${project.root}/reports/phpcpd.xml" type="pmd"/>
+        </phpcpd>
+    </target>
+
+    <target name="phpcpd.execute">
+        <phingcall target="phpcpd:main"/>
+    </target>
+
+</project>
