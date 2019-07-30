@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="ci_test" default="test.execute">
+    <resolvepath propertyName="test.root" file="${phing.dir.ci_test}"/>
+
+    <target name="ci.test:before" hidden="true">
+        <echo message="No actions defined" level="debug"/>
+    </target>
+
+    <target name="ci.test:main" hidden="true">
+        <exec executable="vendor/bin/codecept" checkreturn="true">
+            <arg value="run"/>
+            <arg value="--coverage-html"/>
+            <arg value="--coverage-xml"/>
+            <arg value="--html"/>
+            <arg value="--xml"/>
+        </exec>
+    </target>
+
+    <target name="ci.test:after" hidden="true">
+        <echo message="No actions defined" level="debug"/>
+    </target>
+
+    <target name="ci.test">
+        <phingcall target="ci.test:before"/>
+        <phingcall target="ci.test:main"/>
+        <phingcall target="ci.test:after"/>
+    </target>
+</project>

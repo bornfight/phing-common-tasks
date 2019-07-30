@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project name="db" default="db.help">
-    <resolvepath propertyName="doctrine.root" file="${commons.root}/targets/doctrine"/>
-    <resolvepath propertyName="console" file="${project.root}/bin/console"/>
+    <resolvepath propertyName="doctrine.root" file="${phing.dir.db}"/>
+    <resolvepath propertyName="console" file="bin/console"/>
 
     <target name="db.help">
         <echo message="No actions defined" level="debug"/>

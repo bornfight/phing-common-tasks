@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="static-analysis" default="static-analysis.execute">
-    <resolvepath propertyName="static-analysis.root" file="${commons.root}/targets/static-analysis"/>
+<project name="static_analysis" default="static-analysis">
+    <resolvepath propertyName="static-analysis.root" file="${phing.dir.static_analysis}"/>
     <import file="${static-analysis.root}/tools/phpcpd.xml"/>
     <import file="${static-analysis.root}/tools/phpcs.xml"/>
     <import file="${static-analysis.root}/tools/phpmd.xml"/>
@@ -12,18 +12,18 @@
     </target>
 
     <target name="static-analysis:main" hidden="true">
-        <mkdir dir="${project.root}/reports"/>
-        <phingcall target="phpmd.execute"/>
-        <phingcall target="phpcpd.execute"/>
-        <phingcall target="phpstan.execute"/>
-        <phingcall target="phpcs.execute"/>
+        <mkdir dir="reports"/>
+        <phingcall target="phpmd"/>
+        <phingcall target="phpcpd"/>
+        <phingcall target="phpstan"/>
+        <phingcall target="phpcs"/>
     </target>
 
     <target name="static-analysis:after" hidden="true">
         <echo message="No actions defined" level="debug"/>
     </target>
 
-    <target name="static-analysis.execute">
+    <target name="static-analysis">
         <phingcall target="static-analysis:before"/>
         <phingcall target="static-analysis:main"/>
         <phingcall target="static-analysis:after"/>

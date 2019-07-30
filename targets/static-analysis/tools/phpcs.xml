@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
-<project name="phpcs" default="phpcs.execute">
-
+<project name="phpcs" default="phpcs">
     <target name="phpcs:main" hidden="true">
-        <available file="${project.root}/.php_cs.dist" type="file" property="php_cs.dist.exists"/>
+        <available file=".php_cs.dist" type="file" property="php_cs.dist.exists"/>
         <fail unless="php_cs.dist.exists" message="php_cs.dist not found!"/>
-        <exec executable="${project.root}/vendor/bin/php-cs-fixer" passthru="true" checkreturn="true" output="${project.root}/reports/php-csfixer-checkstyle.xml">
+        <exec executable="vendor/bin/php-cs-fixer" passthru="true" output="reports/php-csfixer-checkstyle.xml">
             <arg value="fix"/>
             <arg value="--dry-run"/>
             <arg value="--diff"/>
@@ -14,8 +13,7 @@
         </exec>
     </target>
 
-
-    <target name="phpcs.execute">
+    <target name="phpcs">
         <phingcall target="phpcs:main"/>
         <echo message="Succeessful!"/>
     </target>

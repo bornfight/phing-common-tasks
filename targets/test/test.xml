@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="test" default="test.execute">
+    <resolvepath propertyName="test.root" file="${phing.dir.test}"/>
+
+    <target name="test:before" hidden="true">
+        <echo message="No actions defined" level="debug"/>
+    </target>
+
+    <target name="test:main" hidden="true">
+        <exec executable="vendor/bin/codecept" checkreturn="true" passthru="true">
+            <arg value="run"/>
+        </exec>
+    </target>
+
+    <target name="test:after" hidden="true">
+        <echo message="No actions defined" level="debug"/>
+    </target>
+
+    <target name="test">
+        <phingcall target="test:before"/>
+        <phingcall target="test:main"/>
+        <phingcall target="test:after"/>
+    </target>
+
+    <target name="test.unit">
+        <exec executable="vendor/bin/codecept" checkreturn="true" passthru="true">
+            <arg value="run"/>
+            <arg value="unit"/>
+        </exec>
+    </target>
+
+    <target name="test.clear">
+        <exec executable="vendor/bin/codecept" checkreturn="true" passthru="true">
+            <arg value="clear"/>
+        </exec>
+    </target>
+</project>

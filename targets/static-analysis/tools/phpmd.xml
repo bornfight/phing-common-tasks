@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
-<project name="phpmd" default="phpmd.execute">
+<project name="phpmd" default="phpmd">
 
     <target name="phpmd:main" hidden="true">
-        <available file="${project.root}/phpmd.xml" type="file" property="phpmd.xml.exists"/>
+        <available file="phpmd.xml" type="file" property="phpmd.xml.exists"/>
         <fail unless="phpmd.xml.exists" message="phpmd.xml not found!"/>
-        <phpmd rulesets="${project.root}/phpmd.xml">
-            <fileset dir="${project.root}">
+        <phpmd rulesets="phpmd.xml">
+            <fileset dir=".">
                 <include name="src/**/*.php" />
             </fileset>
-            <formatter type="xml" outfile="${project.root}/reports/phpmd.xml"/>
+            <formatter type="xml" outfile="reports/phpmd.xml"/>
         </phpmd>
     </target>
 
-    <target name="phpmd.execute">
+    <target name="phpmd">
         <phingcall target="phpmd:main"/>
     </target>
 
