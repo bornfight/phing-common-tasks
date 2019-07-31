@@ -9,6 +9,7 @@
             <arg value="fix"/>
             <arg value="--dry-run"/>
             <arg value="--diff"/>
+            <arg value="--allow-risky=yes"/>
             <arg value="--format=checkstyle"/>
         </exec>
     </target>
