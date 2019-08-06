@@ -22,6 +22,7 @@
     <target name="phpcs.fix">
         <exec executable="vendor/bin/php-cs-fixer" checkreturn="true">
             <arg value="fix"/>
+            <arg value="--allow-risky=yes"/>
         </exec>
     </target>
 
